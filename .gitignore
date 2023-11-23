@@ -9,3 +9,15 @@ Configurations/
 *.log
 *.lock
 .metadata/
+*.launch
+*.d
+*.o
+*.elf
+*.hex
+*.map
+*.mdf
+*.mk
+*.src
+Kwang/Module_Dev/TriCore/ Debug (TASKING)/
+makefile
+*.opt
