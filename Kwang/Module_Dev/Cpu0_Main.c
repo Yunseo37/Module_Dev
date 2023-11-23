@@ -46,13 +46,17 @@ int core0_main(void)
     IfxCpu_emitEvent(&g_cpuSyncEvent);
     IfxCpu_waitEvent(&g_cpuSyncEvent, 1);
 
+    /* Init  */
     initPeripheralsAndERU();
+    Driver_Stm_Init();
     initLED();
         
     while(1)
     {
         // control_LED();  /* Check the push button and set the LED accordingly    */
         if(INTERRUT_VAL ==1)blinkLED();
+
+        AppScheduling();
     }
     return (1);
 }
