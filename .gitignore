@@ -6,3 +6,6 @@ Configurations/
 *.project
 *.xml
 *.lsl
+*.log
+*.lock
+.metadata/
