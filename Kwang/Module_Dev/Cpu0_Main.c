@@ -27,7 +27,7 @@
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
 #include "IfxScuWdt.h"
-#include "Mylib/Blinky_LED.h"
+#include "Mylib/GPIO_LED_Button.h"
 
 IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
@@ -45,11 +45,11 @@ int core0_main(void)
     IfxCpu_emitEvent(&g_cpuSyncEvent);
     IfxCpu_waitEvent(&g_cpuSyncEvent, 1);
 
-    initLED();  /* Initialize the LED port pin      */
+    init_GPIOs();  /* Initialize the LED port pin      */
         
     while(1)
     {
-        blinkLED(); /* Make the LED blink */
+        control_LED();  /* Check the push button and set the LED accordingly    */
     }
     return (1);
 }
