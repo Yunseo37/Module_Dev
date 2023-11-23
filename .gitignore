@@ -1,0 +1,8 @@
+Libraries/
+*.json
+*.prefs
+Configurations/
+*.cproject
+*.project
+*.xml
+*.lsl
