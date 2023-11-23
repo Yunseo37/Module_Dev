@@ -24,18 +24,16 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-#include <etc.h>
-#include <my_stdio.h>
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
 #include "IfxScuWdt.h"
 
-#include "Blinky_LED.h"
-#include "AppScheduling.h"
-#include "Driver_Adc.h"
-#include "ToF.h"
-#include "GPIO.h"
+#include "my_stdio.h"
+#include "Etc.h"
 
+#include "GPIO.h"
+#include "Buzzer.h"
+#include "ToF.h"
 
 IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
@@ -54,22 +52,32 @@ int core0_main(void)
     IfxCpu_waitEvent(&g_cpuSyncEvent, 1);
 
     /* Initialize */
-    Driver_Stm_Init();
+    Init_Mystdio();
 
     Init_GPIO();
+    Init_Buzzer();
     Init_ToF();
 
     /* Variables */
     int distance = 0;
 
+
     while(1)
     {
-//        AppScheduling();
-
         distance = getTofDistance();
         delay_ms(500);
 
         my_printf("distance = %d\n", distance);
+
+        if (distance > 0 && distance < 100)
+        {
+            setBeepCycle(200);
+        }
+        else
+        {
+            setBeepCycle(0);
+        }
+
     }
     return (1);
 }

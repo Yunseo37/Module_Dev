@@ -1,4 +1,4 @@
-#include <etc.h>
+#include "etc.h"
 
 // init_gpt1() should be called before using delay_ms()
 void delay_ms(unsigned int delay_time)
