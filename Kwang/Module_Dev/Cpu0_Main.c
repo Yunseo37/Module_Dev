@@ -54,8 +54,6 @@ int core0_main(void)
     while(1)
     {
         // control_LED();  /* Check the push button and set the LED accordingly    */
-        if(INTERRUT_VAL ==1)blinkLED();
-
         AppScheduling();
     }
     return (1);
