@@ -6,6 +6,8 @@
  */
 #include "AppScheduler.h"
 #include "Driver_Stm.h"
+#include "Mylib/ERU_Interrupt.h"
+#include "Mylib/Blinky_LED.h"
 
 typedef struct
 {
@@ -21,17 +23,17 @@ static void AppTask100ms();
 
 TestCnt stTestCnt;
 
-void AppScheduling(void)
+void AppScheduling(int* status)
 {
     if(stSchedulingInfo.u8nuScheduling1msFlag == 1u)
     {
         stSchedulingInfo.u8nuScheduling1msFlag = 0u;
-        AppTask1ms();
+        AppTask1ms(&status);
 
         if(stSchedulingInfo.u8nuScheduling10msFlag == 1u)
         {
             stSchedulingInfo.u8nuScheduling10msFlag = 0u;
-            AppTask10ms();
+            AppTask10ms(&status);
         }
 
         if(stSchedulingInfo.u8nuScheduling100msFlag == 1u)
@@ -56,6 +58,6 @@ void AppTask10ms()
 
 void AppTask100ms()
 {
-
+    blinkLED();
 }
 
