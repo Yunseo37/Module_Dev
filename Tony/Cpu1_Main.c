@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
- * \file Cpu0_Main.c
+ * \file Cpu1_Main.c
  * \copyright Copyright (C) Infineon Technologies AG 2019
  * 
  * Use of this file is subject to the terms of use agreed between (i) you or the company in which ordinary course of 
@@ -27,36 +27,24 @@
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
 #include "IfxScuWdt.h"
-#include "Mylib/ERU_Interrupt.h"
-#include "Mylib/Blinky_LED.h"
 
-IfxCpu_syncEvent g_cpuSyncEvent = 0;
+extern IfxCpu_syncEvent g_cpuSyncEvent;
 
-int core0_main(void)
+int core1_main(void)
 {
     IfxCpu_enableInterrupts();
     
-    /* !!WATCHDOG0 AND SAFETY WATCHDOG ARE DISABLED HERE!!
-     * Enable the watchdogs and service them periodically if it is required
+    /* !!WATCHDOG1 IS DISABLED HERE!!
+     * Enable the watchdog and service it periodically if it is required
      */
     IfxScuWdt_disableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
-    IfxScuWdt_disableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
     
     /* Wait for CPU sync event */
     IfxCpu_emitEvent(&g_cpuSyncEvent);
     IfxCpu_waitEvent(&g_cpuSyncEvent, 1);
-
-    /* Init  */
-    initPeripheralsAndERU();
-    Driver_Stm_Init();
-    initLED();
-        
+    
     while(1)
     {
-        // control_LED();  /* Check the push button and set the LED accordingly    */
-        if(INTERRUT_VAL ==1)blinkLED();
-
-        AppScheduling();
     }
     return (1);
 }

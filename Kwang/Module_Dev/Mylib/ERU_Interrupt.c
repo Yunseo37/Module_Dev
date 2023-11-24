@@ -76,6 +76,7 @@ void initPeripheralsAndERU(void)
     /* Input channel configuration */
     IfxScuEru_enableRisingEdgeDetection(g_ERUconfig.inputChannel);          /* Interrupt triggers on
                                                                                rising edge (Register RENx) and  */
+    // Falling Edge 제거
     // IfxScuEru_enableFallingEdgeDetection(g_ERUconfig.inputChannel);         /* on falling edge (Register FENx)  */
 
     /* Signal destination */
