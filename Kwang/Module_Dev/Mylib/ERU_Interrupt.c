@@ -47,7 +47,7 @@ void SCUERU_Int0_Handler(void)
     IfxPort_setPinState(LED1, IfxPort_State_toggled);                        /* Toggle LED                       */
     IfxPort_setPinState(LED2, IfxPort_State_toggled);                        /* Toggle LED                       */
     // INTERRUT_VAL = INTERRUT_VAL ^ 1;
-    waitTime(IfxStm_getTicksFromMilliseconds(BSP_DEFAULT_TIMER, 200));
+    // waitTime(IfxStm_getTicksFromMilliseconds(BSP_DEFAULT_TIMER, 10));
 }
 
 /* This functions initializes the output pin for the LED1 and the pin which toggles the state for generating

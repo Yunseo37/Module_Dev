@@ -45,7 +45,6 @@ SchedulingFlag stSchedulingInfo;
 // Interrupt 등록
 IFX_INTERRUPT(STM_Int0Handler, 0, 100); // ISR_PRIORITY_INFO = 100이다
 
-
 void Driver_Stm_Init(void)
 {
     /* disable interrupts */

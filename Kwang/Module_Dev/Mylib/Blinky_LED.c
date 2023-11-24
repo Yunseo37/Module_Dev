@@ -16,7 +16,7 @@
 /*********************************************************************************************************************/
 // #1 : To turn on LED of Easy module shield, MODULE_P00, 2 -> MODULE_P10, 2
 #define LED         &MODULE_P10,2                                           /* LED: Port, Pin definition            */
-#define WAIT_TIME   500                                                     /* Wait time constant in milliseconds   */
+#define WAIT_TIME   100                                                  /* Wait time constant in milliseconds   */
 
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
